@@ -7,14 +7,18 @@
 static QGuiApplication *app = nullptr;
 static QQmlApplicationEngine *engine = nullptr;
 
-void createApplication(int argc, char **argv)
+void createApplication(int tmpargc, char **argv)
 {
     if (app)
         return;
+
+    // argv from Go, and all of the strings in it, are freshly malloc'd
+    // and nothing will free them, so those are safe to pass to Qt as-is.
+    // The constructor takes and stores an int& for argc, so we need a
+    // copy for that with more permanent storage.
+    static int argc = tmpargc;
+
     app = new QGuiApplication(argc, argv);
-    // This is somehow necessary to prevent a crash under loadData...
-    // I have genuinely no idea how or why, but it at least doesn't hurt.
-    app->arguments();
 }
 
 void createEngine()
