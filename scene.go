@@ -4,6 +4,7 @@ package qgoscene
 // #include "scene.h"
 import "C"
 import (
+	"runtime"
 	"unsafe"
 )
 
@@ -90,6 +91,8 @@ func (s *Scene) Quit() {
 }
 
 func (s *Scene) createApplication() {
+	runtime.LockOSThread()
+
 	argc, argv := cStringList(s.Args)
 	C.createApplication(argc, argv)
 }
