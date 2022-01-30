@@ -1,6 +1,8 @@
 package qgoscene
 
-// #cgo pkg-config: Qt5Gui Qt5Quick
+// #cgo !qt6 pkg-config: Qt5Gui Qt5Quick
+// #cgo qt6 CXXFLAGS: -I/usr/include/qt6 -I/usr/include/qt6/QtCore -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtQml
+// #cgo qt6 LDFLAGS: -lQt6Core -lQt6Gui -lQt6Quick -lQt6Qml
 // #include "scene.h"
 import "C"
 import (

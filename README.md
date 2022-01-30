@@ -11,6 +11,7 @@ qgoscene is _not_ a Qt/QML binding for Go. There is explicitly no control or com
 ```
 go get -u github.com/special/qgoscene
 ```
+Build with `-tags qt6` to link against Qt 6.
 
 ```go
 package main
